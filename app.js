@@ -1,7 +1,8 @@
 import express from "express";
 import cors from 'cors';
+import { config } from "dotenv";
 
-import { PORT } from "./config.js";
+config();
 
 //importamos la conexion a la base de datos
 import db from "./database/db.js";
@@ -28,6 +29,6 @@ app.get('/', (req, res) => {
     res. send('hola mundo');
 });
 
-app.listen(PORT, () => {
-    console.log(`Server on port 4000`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server on port ${process.env.PORT}`);
 });
