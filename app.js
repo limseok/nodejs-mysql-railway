@@ -8,6 +8,7 @@ import db from "./database/db.js";
 
 //importamos a nuestro enrutados
 import blogRoutes from "./routes/routes.js";
+import { createBlog, deleteBlog, getAllBlogs, getBlog, updataBlog } from "./controllers/BlogController.js";
 
 const app = express();
 
@@ -24,9 +25,14 @@ try {
     console.log(`el error de la conexion es ${error}`);
 }
 
+app.get('/', getAllBlogs);
 app.get('/', (req, res) => {
     res. send('hola mundo');
 });
+app.get('/:id', getBlog);
+app.post('/', createBlog);
+app.put('/:id', updataBlog);
+app.delete('/:id', deleteBlog);
 
 app.listen(PORT, () => {
     console.log(`Server on port 4000`);
